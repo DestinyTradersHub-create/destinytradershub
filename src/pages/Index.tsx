@@ -1,9 +1,13 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
+import MarketTicker from "@/components/MarketTicker";
 import StatsSection from "@/components/StatsSection";
-import FeaturesSection from "@/components/FeaturesSection";
-import FreeBotsSection from "@/components/FreeBotsSection";
+import TradingAssetsSection from "@/components/TradingAssetsSection";
+import LiveMarketSection from "@/components/LiveMarketSection";
+import GetStartedSection from "@/components/GetStartedSection";
+import ToolsMentorshipSection from "@/components/ToolsMentorshipSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import FAQSection from "@/components/FAQSection";
 import PartnershipSection from "@/components/PartnershipSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
@@ -14,10 +18,14 @@ const Index = () => {
       <Header />
       <main>
         <HeroSection />
+        <MarketTicker />
         <StatsSection />
-        <FeaturesSection />
-        <FreeBotsSection />
+        <TradingAssetsSection />
+        <LiveMarketSection />
+        <GetStartedSection />
+        <ToolsMentorshipSection />
         <TestimonialsSection />
+        <FAQSection />
         <PartnershipSection />
         <ContactSection />
       </main>
