@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Shield, Zap } from "lucide-react";
+import { ArrowRight, Play, Shield, Handshake, Send } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
@@ -48,12 +48,25 @@ const HeroSection = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
+          {/* Partnership Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6 border border-accent/30"
+          >
+            <Handshake className="w-4 h-4 text-accent" />
+            <span className="text-sm font-medium text-accent">
+              In Partnership with Deriv
+            </span>
+          </motion.div>
+
+          {/* Trust Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 ml-2"
           >
             <Shield className="w-4 h-4 text-emerald" />
             <span className="text-sm font-medium text-muted-foreground">
@@ -65,11 +78,12 @@ const HeroSection = () => {
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
             className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
           >
-            <span className="text-foreground">Destiny</span>
-            <span className="text-gradient-gold"> Traders Hub</span>
+            <span className="text-foreground">Trade CFDs, Forex,</span>
+            <br />
+            <span className="text-gradient-gold">Crypto & More on Deriv</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -79,8 +93,8 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto"
           >
-            Smart Trading Starts Here. Learn, Trade & Grow with Deriv.
-            Join thousands of profitable traders with free bots, mentorship, and expert strategies.
+            Access 100+ global markets including Forex, Cryptocurrencies, Commodities, 
+            Stocks, Synthetic Indices & more. Trade 24/7 with free tools, bots & expert mentorship.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -88,14 +102,9 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6"
           >
-            <Button
-              variant="hero"
-              size="xl"
-              asChild
-              className="w-full sm:w-auto"
-            >
+            <Button variant="hero" size="xl" asChild className="w-full sm:w-auto">
               <a
                 href="https://partners.deriv.com/rx?sidc=F310811B-4DCC-433A-B9AF-E14FA2AA0E6C&utm_campaign=dynamicworks&utm_medium=affiliate&utm_source=CU92942"
                 target="_blank"
@@ -106,41 +115,42 @@ const HeroSection = () => {
               </a>
             </Button>
 
-            <Button
-              variant="heroSecondary"
-              size="xl"
-              asChild
-              className="w-full sm:w-auto"
-            >
-              <a
-                href="https://dbotpro.live"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+            <Button variant="heroSecondary" size="xl" asChild className="w-full sm:w-auto">
+              <a href="https://dbotpro.live" target="_blank" rel="noopener noreferrer">
                 <Play className="w-5 h-5 mr-1" />
                 Trade Now With Free Tools
               </a>
             </Button>
           </motion.div>
 
-          {/* Feature Pills */}
+          {/* Telegram CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mb-12"
+          >
+            <Button variant="outline" size="lg" asChild className="border-[#0088cc]/50 text-[#0088cc] hover:bg-[#0088cc]/10">
+              <a href="https://t.me/thetradinghub101" target="_blank" rel="noopener noreferrer">
+                <Send className="w-4 h-4 mr-2" />
+                Join Our Trading Community
+              </a>
+            </Button>
+          </motion.div>
+
+          {/* Markets Pills */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex flex-wrap justify-center gap-3"
+            className="flex flex-wrap justify-center gap-2"
           >
-            {[
-              { icon: Zap, text: "Free Bots" },
-              { icon: Shield, text: "Free Analysis Tools" },
-              { icon: Play, text: "Beginner Friendly" },
-            ].map((item, index) => (
+            {["Forex", "Crypto", "Commodities", "Stocks", "Synthetic Indices", "CFDs", "Options"].map((market) => (
               <div
-                key={index}
-                className="flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 border border-border/30"
+                key={market}
+                className="px-3 py-1.5 rounded-full bg-secondary/50 border border-border/30 text-sm text-muted-foreground"
               >
-                <item.icon className="w-4 h-4 text-primary" />
-                <span className="text-sm text-foreground">{item.text}</span>
+                {market}
               </div>
             ))}
           </motion.div>
