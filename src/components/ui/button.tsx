@@ -18,6 +18,7 @@ const buttonVariants = cva(
         hero: "bg-primary text-primary-foreground font-bold text-base md:text-lg shadow-button hover:shadow-gold hover:scale-105 animate-glow",
         heroSecondary: "bg-secondary/80 text-foreground border border-border hover:bg-secondary hover:border-primary/50 backdrop-blur-sm",
         emerald: "bg-emerald text-foreground font-bold hover:bg-emerald-light shadow-lg hover:shadow-xl",
+        telegram: "bg-[#0088cc] text-white font-bold text-base md:text-lg shadow-lg hover:bg-[#0077b5] hover:scale-105 hover:shadow-xl transition-all",
       },
       size: {
         default: "h-10 px-4 py-2",
