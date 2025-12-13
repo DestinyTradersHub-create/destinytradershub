@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X, TrendingUp, Handshake } from "lucide-react";
@@ -15,20 +15,43 @@ const navLinks = [
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
+  const scrollToSection = useCallback((e: React.MouseEvent | React.TouchEvent, href: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const elementId = href.replace('#', '');
+    const element = document.getElementById(elementId);
+    
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      // Close menu first
+      setIsOpen(false);
+      
+      // Small delay to allow menu animation to start
+      setTimeout(() => {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
+    } else {
+      setIsOpen(false);
     }
-    setIsOpen(false);
-  };
+  }, []);
+
+  const toggleMenu = useCallback((e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsOpen(prev => !prev);
+  }, []);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-border/30">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-2 group">
+          <a 
+            href="#home" 
+            className="flex items-center gap-2 group"
+            onClick={(e) => scrollToSection(e, '#home')}
+            onTouchEnd={(e) => scrollToSection(e, '#home')}
+          >
             <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-button">
               <TrendingUp className="w-6 h-6 text-primary-foreground" />
             </div>
@@ -48,7 +71,7 @@ const Header = () => {
             {navLinks.map((link) => (
               <button
                 key={link.label}
-                onClick={() => scrollToSection(link.href)}
+                onClick={(e) => scrollToSection(e, link.href)}
                 className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary/50"
               >
                 {link.label}
@@ -71,9 +94,12 @@ const Header = () => {
 
           {/* Mobile Menu Toggle */}
           <button
-            className="lg:hidden p-2 text-foreground"
-            onClick={() => setIsOpen(!isOpen)}
+            type="button"
+            className="lg:hidden p-3 text-foreground touch-manipulation"
+            onClick={toggleMenu}
+            onTouchEnd={toggleMenu}
             aria-label="Toggle menu"
+            aria-expanded={isOpen}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -87,7 +113,8 @@ const Header = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden glass border-t border-border/30"
+            transition={{ duration: 0.2 }}
+            className="lg:hidden glass border-t border-border/30 overflow-hidden"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-2">
               {/* Partnership Badge - Mobile */}
@@ -99,8 +126,10 @@ const Header = () => {
               {navLinks.map((link) => (
                 <button
                   key={link.label}
-                  onClick={() => scrollToSection(link.href)}
-                  className="px-4 py-3 text-left text-base font-medium text-foreground hover:bg-secondary/50 rounded-lg transition-colors"
+                  type="button"
+                  onClick={(e) => scrollToSection(e, link.href)}
+                  onTouchEnd={(e) => scrollToSection(e, link.href)}
+                  className="px-4 py-4 text-left text-base font-medium text-foreground hover:bg-secondary/50 active:bg-secondary/70 rounded-lg transition-colors touch-manipulation"
                 >
                   {link.label}
                 </button>
