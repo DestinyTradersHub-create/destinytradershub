@@ -62,7 +62,7 @@ const assets = [
 
 const TradingAssetsSection = () => {
   return (
-    <section id="markets" className="py-20 relative">
+    <section id="markets" className="py-10 md:py-20 relative">
       <div className="absolute inset-0 bg-gradient-glow opacity-30" />
       
       <div className="container mx-auto px-4 relative z-10">
@@ -70,21 +70,21 @@ const TradingAssetsSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="text-center mb-16 gpu-accelerated"
+          className="text-center mb-8 md:mb-16 gpu-accelerated"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-4 md:mb-6">
             <TrendingUp className="w-4 h-4 text-primary" />
             <span className="text-sm font-medium text-muted-foreground">100+ Markets Available</span>
           </div>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+          <h2 className="font-display text-2xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4">
             Trade <span className="text-gradient-gold">Any Market</span> You Want
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-sm md:text-lg max-w-2xl mx-auto">
             Access global markets from one platform. Trade forex, crypto, stocks, commodities & more with competitive spreads.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
           {assets.map((asset, index) => (
             <motion.div
               key={asset.title}
@@ -92,18 +92,18 @@ const TradingAssetsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ delay: index * 0.1 }}
-              className="glass-card p-6 hover:border-primary/30 transition-all duration-300 group gpu-accelerated"
+              className="glass-card p-4 md:p-6 hover:border-primary/30 transition-all duration-300 group gpu-accelerated"
             >
-              <div className={`w-12 h-12 rounded-xl ${asset.bg} flex items-center justify-center mb-4`}>
-                <asset.icon className={`w-6 h-6 ${asset.color}`} />
+              <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl ${asset.bg} flex items-center justify-center mb-3 md:mb-4`}>
+                <asset.icon className={`w-5 h-5 md:w-6 md:h-6 ${asset.color}`} />
               </div>
               
-              <h3 className="font-display text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+              <h3 className="font-display text-base md:text-xl font-bold text-foreground mb-1 md:mb-2 group-hover:text-primary transition-colors">
                 {asset.title}
               </h3>
-              <p className="text-muted-foreground text-sm mb-4">{asset.description}</p>
+              <p className="text-muted-foreground text-xs md:text-sm mb-3 md:mb-4 line-clamp-2">{asset.description}</p>
               
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1 md:gap-2">
                 {asset.pairs.map((pair) => (
                   <span
                     key={pair}

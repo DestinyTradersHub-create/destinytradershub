@@ -79,17 +79,17 @@ const StatsSection = () => {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section className="py-20 relative">
+    <section className="py-10 md:py-20 relative">
       <div className="absolute inset-0 bg-gradient-glow opacity-30" />
       <div className="container mx-auto px-4" ref={ref}>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="glass-card p-6 md:p-8 text-center hover:border-primary/30 transition-colors gpu-accelerated"
+              className="glass-card p-4 md:p-8 text-center hover:border-primary/30 transition-colors gpu-accelerated"
             >
               <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-secondary mb-4 ${stat.color}`}>
                 <stat.icon className="w-6 h-6" />
