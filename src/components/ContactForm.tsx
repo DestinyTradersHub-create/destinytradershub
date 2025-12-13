@@ -3,11 +3,12 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { isValidPhoneNumber } from "react-phone-number-input";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { PhoneInput } from "@/components/ui/phone-input";
 import {
   Form,
   FormControl,
@@ -17,6 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Send, Loader2 } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 const contactSchema = z.object({
   name: z
@@ -31,8 +33,9 @@ const contactSchema = z.object({
     .max(255, "Email must be less than 255 characters"),
   phone: z
     .string()
-    .trim()
-    .max(20, "Phone number must be less than 20 characters")
+    .refine((val) => !val || isValidPhoneNumber(val), {
+      message: "Please enter a valid phone number",
+    })
     .optional()
     .or(z.literal("")),
   message: z
@@ -147,10 +150,10 @@ const ContactForm = () => {
               <FormItem>
                 <FormLabel>Phone (Optional)</FormLabel>
                 <FormControl>
-                  <Input
-                    type="tel"
-                    placeholder="+254 700 000 000"
-                    className="bg-secondary/50 border-border/50 focus:border-primary"
+                  <PhoneInput
+                    placeholder="Enter phone number"
+                    defaultCountry="KE"
+                    international
                     {...field}
                   />
                 </FormControl>
