@@ -150,6 +150,19 @@
   .glass-card {
     @apply bg-card/80 backdrop-blur-xl border border-border/30 rounded-2xl;
   }
+
+  .glow-pulse {
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(43 96% 56% / 0.4), 0 0 40px hsl(43 96% 56% / 0.2), 0 0 60px hsl(43 96% 56% / 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px hsl(43 96% 56% / 0.6), 0 0 60px hsl(43 96% 56% / 0.4), 0 0 90px hsl(43 96% 56% / 0.2);
+  }
 }
 
 /* Market Ticker Animation */

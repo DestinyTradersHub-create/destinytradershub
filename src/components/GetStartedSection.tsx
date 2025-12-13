@@ -77,7 +77,7 @@ const GetStartedSection = () => {
                 </h3>
                 <p className="text-muted-foreground mb-4">{step.description}</p>
                 
-                <ul className="space-y-2">
+                <ul className="space-y-2 mb-4">
                   {step.features.map((feature) => (
                     <li key={feature} className="flex items-center gap-2 text-sm text-muted-foreground">
                       <CheckCircle className="w-4 h-4 text-accent" />
@@ -85,6 +85,23 @@ const GetStartedSection = () => {
                     </li>
                   ))}
                 </ul>
+
+                {/* Start Now CTA for first step */}
+                {index === 0 && (
+                  <Button
+                    asChild
+                    className="w-full mt-2 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold glow-pulse"
+                  >
+                    <a
+                      href="https://partners.deriv.com/rx?sidc=F310811B-4DCC-433A-B9AF-E14FA2AA0E6C&utm_campaign=dynamicworks&utm_medium=affiliate&utm_source=CU92942"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Start Now
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </a>
+                  </Button>
+                )}
               </div>
             </motion.div>
           ))}
