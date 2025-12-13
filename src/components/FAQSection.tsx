@@ -12,36 +12,36 @@ const SIGNUP_URL = "https://partners.deriv.com/rx?sidc=F310811B-4DCC-433A-B9AF-E
 
 const faqs = [
   {
-    question: "What is Deriv and how does it work?",
-    answer: "Deriv is a leading online trading platform offering access to forex, cryptocurrencies, commodities, stocks, and synthetic indices. With over 2 million traders worldwide, Deriv provides a secure, regulated environment for trading CFDs, options, and multipliers. You can start with as little as $5 and access free demo accounts to practice.",
+    question: "What is Deriv and what trading options does it offer?",
+    answer: "Deriv is an online trading platform offering access to forex, cryptocurrencies, commodities, stocks, and synthetic indices. With over 2 million users worldwide, Deriv provides a regulated environment for trading CFDs, options, and multipliers. You can start with a demo account to practice risk-free.",
   },
   {
-    question: "Is it safe to trade on Deriv?",
-    answer: "Yes, Deriv is a trusted broker regulated by multiple financial authorities including the Malta Financial Services Authority (MFSA), Labuan Financial Services Authority, and the Vanuatu Financial Services Commission. Your funds are kept in segregated accounts for maximum security.",
+    question: "Is Deriv a regulated trading platform?",
+    answer: "Yes, Deriv is regulated by multiple financial authorities including the Malta Financial Services Authority (MFSA), Labuan Financial Services Authority, and the Vanuatu Financial Services Commission. This provides regulatory oversight for traders using the platform.",
   },
   {
-    question: "What markets can I trade on Deriv?",
-    answer: "Deriv offers 100+ markets including Forex (major, minor, exotic pairs), Cryptocurrencies (BTC, ETH, and 50+ coins), Commodities (Gold, Silver, Oil), Stock Indices (US500, UK100), and unique Synthetic Indices available 24/7 with no market hours restrictions.",
+    question: "What markets can I access on Deriv?",
+    answer: "Deriv offers 100+ markets including Forex (major, minor, exotic pairs), Cryptocurrencies (BTC, ETH, and more), Commodities (Gold, Silver, Oil), Stock Indices (US500, UK100), and unique Synthetic Indices available 24/7.",
   },
   {
-    question: "What is the minimum deposit to start trading?",
-    answer: "You can start trading on Deriv with as little as $5. Multiple deposit methods are available including credit/debit cards, bank transfers, e-wallets, and cryptocurrencies. Deposits are usually instant, and there are no deposit fees.",
+    question: "What is the minimum deposit to start on Deriv?",
+    answer: "You can start on Deriv with as little as $5. Multiple deposit methods are available including credit/debit cards, bank transfers, e-wallets, and cryptocurrencies. We recommend starting with a demo account first to practice.",
   },
   {
-    question: "Are the trading bots really free?",
-    answer: "Yes! We provide completely free trading bots that work on the Deriv platform. These bots are pre-configured with proven strategies for synthetic indices and forex pairs. No coding skills required - just download, configure your risk settings, and deploy.",
+    question: "What educational resources do you provide?",
+    answer: "We offer educational content including practice trading bots, video tutorials, community discussions, and mentorship sessions. Our focus is on helping you understand trading concepts and risk management. Note: This is educational content, not financial advice.",
   },
   {
-    question: "How do I get started with trading?",
-    answer: "Getting started is easy: 1) Create your free Deriv account (takes 2 minutes), 2) Verify your email and complete basic KYC, 3) Fund your account with a minimum of $5, 4) Start trading on demo or live account. We also provide free mentorship and trading tools to help you succeed.",
+    question: "How do I get started with learning to trade?",
+    answer: "Getting started is straightforward: 1) Create your Deriv account, 2) Practice on a demo account first, 3) Join our educational community, 4) Learn from our tutorials and mentorship resources. Always practice responsible trading and never risk more than you can afford to lose.",
   },
   {
-    question: "What support do you offer for beginners?",
-    answer: "We offer comprehensive support including: Free trading bots and analysis tools, Video tutorials on YouTube, Live mentorship sessions, 24/7 Telegram and WhatsApp community access, Daily trading signals and market analysis, and One-on-one coaching for serious traders.",
+    question: "What support does your mentorship program offer?",
+    answer: "Our educational mentorship includes: Video tutorials on YouTube, Community discussions on Telegram and WhatsApp, Educational content about market analysis, and Q&A sessions. We focus on education and understanding, not financial advice or profit promises.",
   },
   {
-    question: "Can I trade on mobile?",
-    answer: "Yes! Deriv offers mobile apps for both iOS and Android devices. You can also trade directly from any mobile browser. All features including deposits, withdrawals, and trading are fully accessible on mobile devices.",
+    question: "What are the risks involved in trading?",
+    answer: "Trading CFDs, forex, and derivatives involves significant risk and can result in losses. Past performance does not guarantee future results. Only trade with money you can afford to lose. We recommend thorough education and practicing on demo accounts before live trading.",
   },
 ];
 
@@ -65,7 +65,7 @@ const FAQSection = () => {
             Frequently Asked <span className="text-gradient-gold">Questions</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Everything you need to know about trading with Deriv and our services.
+            Learn more about Deriv trading and our educational services.
           </p>
         </motion.div>
 
@@ -106,7 +106,7 @@ const FAQSection = () => {
           className="text-center mt-12"
         >
           <p className="text-muted-foreground mb-4">
-            Still have questions? Join our community for instant support.
+            Still have questions? Join our community for educational support.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="hero" size="lg" asChild>

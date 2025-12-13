@@ -17,49 +17,49 @@ const testimonials = [
     name: "James Ochieng",
     country: "Kenya",
     flag: "🇰🇪",
-    feedback: "Destiny Traders Hub changed my life! The free bots are incredible and the mentorship helped me become profitable within weeks.",
+    feedback: "The educational resources at Destiny Traders Hub helped me understand market analysis better. The mentorship program provides great learning support.",
     avatar: jamesAvatar,
   },
   {
     name: "Adaeze Okonkwo",
     country: "Nigeria",
     flag: "🇳🇬",
-    feedback: "I was skeptical at first, but the results speak for themselves. Made my first $500 profit in the second month of trading!",
+    feedback: "I appreciate the structured approach to learning trading concepts. The community is supportive and the educational content is easy to follow.",
     avatar: adaezeAvatar,
   },
   {
     name: "Kwame Asante",
     country: "Ghana",
     flag: "🇬🇭",
-    feedback: "The weekly tips and analysis tools are worth their weight in gold. Best decision I made was joining this community.",
+    feedback: "The weekly educational sessions and analysis tools have helped me develop a better understanding of market dynamics and risk management.",
     avatar: kwameAvatar,
   },
   {
     name: "Thabo Molefe",
     country: "South Africa",
     flag: "🇿🇦",
-    feedback: "From complete beginner to consistent trader. The step-by-step guidance made everything so clear and achievable.",
+    feedback: "As a beginner, the step-by-step learning materials made complex trading concepts much clearer. Great educational platform for newcomers.",
     avatar: thaboAvatar,
   },
   {
     name: "Grace Namara",
     country: "Uganda",
     flag: "🇺🇬",
-    feedback: "The support team is amazing! They respond quickly and the WhatsApp group is full of valuable insights every day.",
+    feedback: "The mentorship team is responsive and helpful. The community provides valuable educational discussions and learning opportunities every day.",
     avatar: graceAvatar,
   },
   {
     name: "Rajesh Sharma",
     country: "India",
     flag: "🇮🇳",
-    feedback: "Trading across time zones is no problem with these bots. Profits while I sleep - that's the dream come true!",
+    feedback: "The platform offers comprehensive educational resources about Deriv trading. I've learned a lot about market analysis and trading strategies.",
     avatar: rajeshAvatar,
   },
   {
     name: "Maria Santos",
     country: "Philippines",
     flag: "🇵🇭",
-    feedback: "Destinyfx is a true mentor. Patient, knowledgeable, and genuinely cares about our success. Highly recommended!",
+    feedback: "Destinyfx provides patient and knowledgeable guidance. The educational approach focuses on understanding markets rather than making promises.",
     avatar: mariaAvatar,
   },
 ];
@@ -100,10 +100,10 @@ const TestimonialsSection = () => {
           className="text-center mb-12"
         >
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Trusted by <span className="text-gradient-gold">Traders</span> Worldwide
+            What Our <span className="text-gradient-gold">Students</span> Say
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Real stories from real traders who transformed their financial future
+            Hear from our community members about their learning experience
           </p>
         </motion.div>
 
@@ -176,6 +176,12 @@ const TestimonialsSection = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Disclaimer */}
+        <p className="text-xs text-muted-foreground text-center mt-6 max-w-2xl mx-auto">
+          * These testimonials reflect individual learning experiences. Trading involves substantial risk. 
+          Educational content does not constitute financial advice.
+        </p>
       </div>
     </section>
   );
