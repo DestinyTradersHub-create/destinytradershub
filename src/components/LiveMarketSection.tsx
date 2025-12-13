@@ -164,91 +164,91 @@ const LiveMarketSection = () => {
   }, []);
 
   return (
-    <section id="live-prices" className="py-20 bg-secondary/30">
+    <section id="live-prices" className="py-10 md:py-20 bg-secondary/30">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="text-center mb-12 gpu-accelerated"
+          className="text-center mb-6 md:mb-12 gpu-accelerated"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-4 md:mb-6">
             <Activity className="w-4 h-4 text-accent animate-pulse" />
             <span className="text-sm font-medium text-muted-foreground">Real-Time Market Data</span>
           </div>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+          <h2 className="font-display text-2xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4">
             Live <span className="text-gradient-gold">Market Prices</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-4">
+          <p className="text-muted-foreground text-sm md:text-lg max-w-2xl mx-auto mb-2 md:mb-4">
             Track real-time prices from Binance API. Data refreshes every 2 seconds.
           </p>
-          <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-            <RefreshCw className="w-4 h-4 animate-spin" />
+          <div className="flex items-center justify-center gap-2 text-xs md:text-sm text-muted-foreground">
+            <RefreshCw className="w-3 h-3 md:w-4 md:h-4 animate-spin" />
             <span>Last update: {lastUpdate.toLocaleTimeString()}</span>
           </div>
         </motion.div>
 
-        {/* Crypto Prices Grid */}
+        {/* Crypto Prices - Horizontal scroll on mobile */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="mb-12 gpu-accelerated"
+          className="mb-6 md:mb-12 gpu-accelerated"
         >
-          <h3 className="font-display text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
+          <h3 className="font-display text-lg md:text-xl font-semibold text-foreground mb-4 md:mb-6 flex items-center gap-2">
             <span className="text-orange-400">₿</span> Cryptocurrency Prices
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="flex md:grid md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 overflow-x-auto pb-2 md:pb-0 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
             {isLoading
               ? Array(6)
                   .fill(0)
                   .map((_, i) => (
-                    <div key={i} className="glass-card p-4 animate-pulse">
-                      <div className="h-6 bg-secondary rounded mb-2" />
-                      <div className="h-8 bg-secondary rounded mb-2" />
+                    <div key={i} className="glass-card p-3 md:p-4 animate-pulse min-w-[140px] md:min-w-0 flex-shrink-0">
+                      <div className="h-5 md:h-6 bg-secondary rounded mb-2" />
+                      <div className="h-6 md:h-8 bg-secondary rounded mb-2" />
                       <div className="h-4 bg-secondary rounded w-1/2" />
                     </div>
                   ))
               : cryptoPrices.map((crypto) => (
-                  <div key={crypto.symbol} className="glass-card p-4 hover:border-primary/30 transition-all">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xl">{crypto.icon}</span>
-                      <span className="font-semibold text-foreground">{crypto.symbol}</span>
+                  <div key={crypto.symbol} className="glass-card p-3 md:p-4 hover:border-primary/30 transition-all min-w-[140px] md:min-w-0 flex-shrink-0">
+                    <div className="flex items-center gap-2 mb-1 md:mb-2">
+                      <span className="text-lg md:text-xl">{crypto.icon}</span>
+                      <span className="font-semibold text-foreground text-sm md:text-base">{crypto.symbol}</span>
                     </div>
-                    <p className="text-2xl font-bold text-foreground font-mono">
+                    <p className="text-lg md:text-2xl font-bold text-foreground font-mono">
                       ${crypto.price > 100 ? crypto.price.toLocaleString(undefined, { maximumFractionDigits: 2 }) : crypto.price.toFixed(4)}
                     </p>
                     <div className={`flex items-center gap-1 mt-1 ${crypto.change24h >= 0 ? "text-accent" : "text-destructive"}`}>
                       {crypto.change24h >= 0 ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
-                      <span className="text-sm font-medium">
+                      <span className="text-xs md:text-sm font-medium">
                         {crypto.change24h >= 0 ? "+" : ""}
                         {crypto.change24h.toFixed(2)}%
                       </span>
                     </div>
-                    <p className="text-xs text-muted-foreground mt-1">Vol: ${crypto.volume}</p>
+                    <p className="text-xs text-muted-foreground mt-1 hidden md:block">Vol: ${crypto.volume}</p>
                   </div>
                 ))}
           </div>
         </motion.div>
 
-        {/* Forex Prices */}
+        {/* Forex Prices - Horizontal scroll on mobile */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="mb-12 gpu-accelerated"
+          className="mb-6 md:mb-12 gpu-accelerated"
         >
-          <h3 className="font-display text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
+          <h3 className="font-display text-lg md:text-xl font-semibold text-foreground mb-4 md:mb-6 flex items-center gap-2">
             <span className="text-blue-400">$</span> Forex Pairs
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="flex md:grid md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 overflow-x-auto pb-2 md:pb-0 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
             {forexPrices.map((pair) => (
-              <div key={pair.symbol} className="glass-card p-4 hover:border-primary/30 transition-all">
-                <p className="font-semibold text-foreground mb-2">{pair.symbol}</p>
-                <p className="text-xl font-bold text-foreground font-mono">{pair.price.toFixed(4)}</p>
+              <div key={pair.symbol} className="glass-card p-3 md:p-4 hover:border-primary/30 transition-all min-w-[120px] md:min-w-0 flex-shrink-0">
+                <p className="font-semibold text-foreground mb-1 md:mb-2 text-sm md:text-base">{pair.symbol}</p>
+                <p className="text-lg md:text-xl font-bold text-foreground font-mono">{pair.price.toFixed(4)}</p>
                 <div className={`flex items-center gap-1 mt-1 ${pair.change >= 0 ? "text-accent" : "text-destructive"}`}>
                   {pair.change >= 0 ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
-                  <span className="text-sm font-medium">
+                  <span className="text-xs md:text-sm font-medium">
                     {pair.change >= 0 ? "+" : ""}
                     {pair.change.toFixed(2)}%
                   </span>
@@ -256,7 +256,7 @@ const LiveMarketSection = () => {
               </div>
             ))}
           </div>
-          <p className="text-xs text-muted-foreground mt-4 text-center">
+          <p className="text-xs text-muted-foreground mt-3 md:mt-4 text-center">
             * Forex prices shown are simulated. Connect TwelveData or Finnhub API for live data.
           </p>
         </motion.div>
@@ -268,12 +268,12 @@ const LiveMarketSection = () => {
           viewport={{ once: true, amount: 0.2 }}
           className="glass-card overflow-hidden gpu-accelerated"
         >
-          <div className="p-4 border-b border-border/30">
-            <h3 className="font-display text-xl font-semibold text-foreground">
+          <div className="p-3 md:p-4 border-b border-border/30">
+            <h3 className="font-display text-lg md:text-xl font-semibold text-foreground">
               Live TradingView Chart - BTC/USDT
             </h3>
           </div>
-          <div className="tradingview-widget-container" ref={chartContainerRef} style={{ height: "500px" }} />
+          <div className="tradingview-widget-container" ref={chartContainerRef} style={{ height: "350px" }} />
         </motion.div>
 
         {/* CTA */}
@@ -281,7 +281,7 @@ const LiveMarketSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="text-center mt-12 gpu-accelerated"
+          className="text-center mt-6 md:mt-12 gpu-accelerated"
         >
           <Button variant="hero" size="xl" asChild>
             <a

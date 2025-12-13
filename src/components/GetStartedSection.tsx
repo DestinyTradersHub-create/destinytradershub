@@ -28,7 +28,7 @@ const steps = [
 
 const GetStartedSection = () => {
   return (
-    <section id="get-started" className="py-20 relative">
+    <section id="get-started" className="py-10 md:py-20 relative">
       <div className="absolute inset-0 bg-gradient-glow opacity-20" />
       
       <div className="container mx-auto px-4 relative z-10">
@@ -36,17 +36,17 @@ const GetStartedSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
         >
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+          <h2 className="font-display text-2xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4">
             Get Started in <span className="text-gradient-gold">3 Easy Steps</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-sm md:text-lg max-w-2xl mx-auto">
             Open your Deriv account today and start trading in minutes. It's free, fast, and secure.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+        <div className="grid md:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-12">
           {steps.map((step, index) => (
             <motion.div
               key={step.number}
@@ -61,21 +61,21 @@ const GetStartedSection = () => {
                 <div className="hidden md:block absolute top-16 left-full w-full h-0.5 bg-gradient-to-r from-primary/50 to-transparent -translate-x-1/2 z-0" />
               )}
               
-              <div className="glass-card p-8 relative z-10 h-full hover:border-primary/30 transition-all">
+              <div className="glass-card p-5 md:p-8 relative z-10 h-full hover:border-primary/30 transition-all">
                 {/* Step Number */}
-                <div className="absolute -top-4 -right-4 w-12 h-12 rounded-full bg-primary flex items-center justify-center font-display font-bold text-primary-foreground shadow-button">
+                <div className="absolute -top-3 -right-3 md:-top-4 md:-right-4 w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary flex items-center justify-center font-display font-bold text-primary-foreground shadow-button text-sm md:text-base">
                   {step.number}
                 </div>
                 
                 {/* Icon */}
-                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
-                  <step.icon className="w-7 h-7 text-primary" />
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 md:mb-6">
+                  <step.icon className="w-6 h-6 md:w-7 md:h-7 text-primary" />
                 </div>
                 
-                <h3 className="font-display text-xl font-bold text-foreground mb-3">
+                <h3 className="font-display text-lg md:text-xl font-bold text-foreground mb-2 md:mb-3">
                   {step.title}
                 </h3>
-                <p className="text-muted-foreground mb-4">{step.description}</p>
+                <p className="text-muted-foreground text-sm mb-3 md:mb-4">{step.description}</p>
                 
                 <ul className="space-y-2 mb-4">
                   {step.features.map((feature) => (
