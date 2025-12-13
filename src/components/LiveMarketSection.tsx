@@ -32,16 +32,19 @@ const LiveMarketSection = () => {
   const [isLoading, setIsLoading] = useState(true);
   const chartContainerRef = useRef<HTMLDivElement>(null);
 
-  // Fetch Binance crypto prices
+  const cryptoSymbols = [
+    { api: "BTCUSDT", name: "Bitcoin", icon: "₿" },
+    { api: "ETHUSDT", name: "Ethereum", icon: "Ξ" },
+    { api: "BNBUSDT", name: "BNB", icon: "◆" },
+    { api: "XRPUSDT", name: "XRP", icon: "✕" },
+    { api: "SOLUSDT", name: "Solana", icon: "◎" },
+    { api: "DOGEUSDT", name: "Dogecoin", icon: "Ð" },
+  ];
+
+  // Fetch Binance crypto prices - deferred to reduce FID
   useEffect(() => {
-    const cryptoSymbols = [
-      { api: "BTCUSDT", name: "Bitcoin", icon: "₿" },
-      { api: "ETHUSDT", name: "Ethereum", icon: "Ξ" },
-      { api: "BNBUSDT", name: "BNB", icon: "◆" },
-      { api: "XRPUSDT", name: "XRP", icon: "✕" },
-      { api: "SOLUSDT", name: "Solana", icon: "◎" },
-      { api: "DOGEUSDT", name: "Dogecoin", icon: "Ð" },
-    ];
+    let interval: ReturnType<typeof setInterval>;
+    let cancelled = false;
 
     const fetchCryptoPrices = async () => {
       try {
@@ -52,6 +55,8 @@ const LiveMarketSection = () => {
               .catch(() => null)
           )
         );
+
+        if (cancelled) return;
 
         const prices: CryptoPrice[] = responses
           .map((data, index) => {
@@ -72,13 +77,31 @@ const LiveMarketSection = () => {
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching crypto prices:", error);
-        setIsLoading(false);
+        if (!cancelled) setIsLoading(false);
       }
     };
 
-    fetchCryptoPrices();
-    const interval = setInterval(fetchCryptoPrices, 2000);
-    return () => clearInterval(interval);
+    // Defer initial fetch to after first paint to reduce FID
+    const scheduleInitialFetch = () => {
+      if ('requestIdleCallback' in window) {
+        (window as Window).requestIdleCallback(() => {
+          fetchCryptoPrices();
+          interval = setInterval(fetchCryptoPrices, 2000);
+        }, { timeout: 1000 });
+      } else {
+        setTimeout(() => {
+          fetchCryptoPrices();
+          interval = setInterval(fetchCryptoPrices, 2000);
+        }, 100);
+      }
+    };
+
+    scheduleInitialFetch();
+    
+    return () => {
+      cancelled = true;
+      if (interval) clearInterval(interval);
+    };
   }, []);
 
   // Simulate forex price updates (would use TwelveData/Finnhub with API key)
