@@ -6,7 +6,6 @@ import { Menu, X, TrendingUp, Handshake } from "lucide-react";
 const navLinks = [
   { label: "Home", href: "#home" },
   { label: "Markets", href: "#markets" },
-  { label: "Live Prices", href: "#live-prices" },
   { label: "Get Started", href: "#get-started" },
   { label: "Testimonials", href: "#testimonials" },
   { label: "FAQ", href: "#faq" },
