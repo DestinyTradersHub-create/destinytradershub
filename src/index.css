@@ -165,16 +165,74 @@
   }
 }
 
+/* GPU-accelerated animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* CSS Particles for Hero - No JS layout measurements */
+.particles-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.particles-container::before,
+.particles-container::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: hsl(var(--primary) / 0.4);
+  border-radius: 50%;
+  animation: particle-float 8s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.particles-container::before {
+  left: 20%;
+  top: 80%;
+  animation-delay: 0s;
+}
+
+.particles-container::after {
+  left: 70%;
+  top: 60%;
+  animation-delay: 2s;
+}
+
+@keyframes particle-float {
+  0%, 100% {
+    transform: translateY(0) translateZ(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-200px) translateZ(0);
+    opacity: 0;
+  }
+}
+
 /* Market Ticker Animation */
 .ticker-wrapper {
   overflow: hidden;
   width: 100%;
+  contain: layout style paint;
 }
 
 .ticker-content {
   display: inline-flex;
   animation: ticker-scroll 30s linear infinite;
   white-space: nowrap;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .ticker-content:hover {
@@ -183,10 +241,10 @@
 
 @keyframes ticker-scroll {
   0% {
-    transform: translateX(0);
+    transform: translateX(0) translateZ(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateZ(0);
   }
 }
 
@@ -194,6 +252,7 @@
 .testimonials-marquee {
   overflow: hidden;
   width: 100%;
+  contain: layout style paint;
 }
 
 .testimonials-track {
@@ -201,6 +260,8 @@
   gap: 1.5rem;
   animation: testimonials-scroll 40s linear infinite;
   width: fit-content;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .testimonials-track:hover {
@@ -209,10 +270,10 @@
 
 @keyframes testimonials-scroll {
   0% {
-    transform: translateX(0);
+    transform: translateX(0) translateZ(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateZ(0);
   }
 }
 
@@ -220,6 +281,7 @@
 .tradingview-widget-container {
   width: 100%;
   height: 100%;
+  contain: layout style;
 }
 
 .tradingview-widget-container iframe {

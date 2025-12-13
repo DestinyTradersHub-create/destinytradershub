@@ -69,8 +69,8 @@ const TradingAssetsSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
+          viewport={{ once: true, amount: 0.2 }}
+          className="text-center mb-16 gpu-accelerated"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6">
             <TrendingUp className="w-4 h-4 text-primary" />
@@ -90,9 +90,9 @@ const TradingAssetsSection = () => {
               key={asset.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ delay: index * 0.1 }}
-              className="glass-card p-6 hover:border-primary/30 transition-all duration-300 group"
+              className="glass-card p-6 hover:border-primary/30 transition-all duration-300 group gpu-accelerated"
             >
               <div className={`w-12 h-12 rounded-xl ${asset.bg} flex items-center justify-center mb-4`}>
                 <asset.icon className={`w-6 h-6 ${asset.color}`} />
