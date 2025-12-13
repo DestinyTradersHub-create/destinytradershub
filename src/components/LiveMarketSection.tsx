@@ -97,34 +97,47 @@ const LiveMarketSection = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Load TradingView widget
+  // Load TradingView widget lazily with IntersectionObserver
   useEffect(() => {
     if (!chartContainerRef.current) return;
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          const container = chartContainerRef.current;
+          if (!container || container.querySelector('script')) return;
+          
+          const script = document.createElement("script");
+          script.src = "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
+          script.type = "text/javascript";
+          script.async = true;
+          script.innerHTML = JSON.stringify({
+            autosize: true,
+            symbol: "BINANCE:BTCUSDT",
+            interval: "15",
+            timezone: "Etc/UTC",
+            theme: "dark",
+            style: "1",
+            locale: "en",
+            enable_publishing: false,
+            backgroundColor: "rgba(15, 23, 42, 1)",
+            gridColor: "rgba(30, 41, 59, 0.5)",
+            hide_top_toolbar: false,
+            hide_legend: false,
+            save_image: false,
+            calendar: false,
+            support_host: "https://www.tradingview.com",
+          });
 
-    const script = document.createElement("script");
-    script.src = "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
-    script.type = "text/javascript";
-    script.async = true;
-    script.innerHTML = JSON.stringify({
-      autosize: true,
-      symbol: "BINANCE:BTCUSDT",
-      interval: "15",
-      timezone: "Etc/UTC",
-      theme: "dark",
-      style: "1",
-      locale: "en",
-      enable_publishing: false,
-      backgroundColor: "rgba(15, 23, 42, 1)",
-      gridColor: "rgba(30, 41, 59, 0.5)",
-      hide_top_toolbar: false,
-      hide_legend: false,
-      save_image: false,
-      calendar: false,
-      support_host: "https://www.tradingview.com",
-    });
+          container.appendChild(script);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
 
-    chartContainerRef.current.innerHTML = "";
-    chartContainerRef.current.appendChild(script);
+    observer.observe(chartContainerRef.current);
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -133,8 +146,8 @@ const LiveMarketSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
+          viewport={{ once: true, amount: 0.2 }}
+          className="text-center mb-12 gpu-accelerated"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6">
             <Activity className="w-4 h-4 text-accent animate-pulse" />
@@ -156,8 +169,8 @@ const LiveMarketSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mb-12 gpu-accelerated"
         >
           <h3 className="font-display text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
             <span className="text-orange-400">₿</span> Cryptocurrency Prices
@@ -199,8 +212,8 @@ const LiveMarketSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mb-12 gpu-accelerated"
         >
           <h3 className="font-display text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
             <span className="text-blue-400">$</span> Forex Pairs
@@ -229,8 +242,8 @@ const LiveMarketSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="glass-card overflow-hidden"
+          viewport={{ once: true, amount: 0.2 }}
+          className="glass-card overflow-hidden gpu-accelerated"
         >
           <div className="p-4 border-b border-border/30">
             <h3 className="font-display text-xl font-semibold text-foreground">
@@ -244,8 +257,8 @@ const LiveMarketSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
+          viewport={{ once: true, amount: 0.2 }}
+          className="text-center mt-12 gpu-accelerated"
         >
           <Button variant="hero" size="xl" asChild>
             <a

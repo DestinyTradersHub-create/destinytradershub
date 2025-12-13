@@ -102,7 +102,7 @@ const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] 
 
 const TestimonialsSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
     <section id="testimonials" className="py-20 relative overflow-hidden">

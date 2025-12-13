@@ -22,28 +22,9 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-glow opacity-50" />
       </div>
 
-      {/* Animated Particles */}
+      {/* Animated Particles - CSS-only for better performance */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        {[...Array(15)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-primary/40 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [-20, -200],
-              opacity: [0, 1, 0],
-            }}
-            transition={{
-              duration: 8 + i * 0.5,
-              repeat: Infinity,
-              ease: "linear",
-              delay: i * 0.3,
-            }}
-          />
-        ))}
+        <div className="particles-container" aria-hidden="true" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">

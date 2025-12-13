@@ -76,7 +76,7 @@ const AnimatedCounter = ({
 
 const StatsSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
     <section className="py-20 relative">
@@ -89,7 +89,7 @@ const StatsSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="glass-card p-6 md:p-8 text-center hover:border-primary/30 transition-colors"
+              className="glass-card p-6 md:p-8 text-center hover:border-primary/30 transition-colors gpu-accelerated"
             >
               <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-secondary mb-4 ${stat.color}`}>
                 <stat.icon className="w-6 h-6" />
