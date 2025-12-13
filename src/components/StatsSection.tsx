@@ -21,7 +21,7 @@ const stats = [
   {
     icon: TrendingUp,
     value: 96,
-    suffix: "+",
+    suffix: "%",
     label: "Course Completions",
     color: "text-primary",
   },
