@@ -8,12 +8,22 @@
     <meta name="author" content="Destinyfx" />
     <meta name="keywords" content="Deriv trading, trading bots, forex trading, Destinyfx, trading mentorship, free trading bots, Deriv affiliate" />
     
-    <!-- Preconnect to external origins for faster LCP -->
-    <link rel="preconnect" href="https://api.binance.com" crossorigin />
-    <link rel="preconnect" href="https://s3.tradingview.com" crossorigin />
-    <link rel="preconnect" href="https://www.tradingview-widget.com" crossorigin />
+    <!-- DNS prefetch and preconnect for faster resource loading -->
+    <link rel="dns-prefetch" href="https://api.binance.com" />
+    <link rel="dns-prefetch" href="https://s3.tradingview.com" />
+    <link rel="dns-prefetch" href="https://www.tradingview-widget.com" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Inline critical styles for faster FCP -->
+    <style>
+      body{margin:0;background:#0a1628;color:#fff;font-family:system-ui,-apple-system,sans-serif}
+      #root{min-height:100vh}
+      .loading-skeleton{animation:pulse 2s infinite}
+      @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+    </style>
     
     <link rel="canonical" href="https://destinytradershub.com" />
 
