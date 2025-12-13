@@ -6,28 +6,28 @@ import { Bot, LineChart, GraduationCap, Calendar, Rocket } from "lucide-react";
 const features = [
   {
     icon: Bot,
-    title: "Free Trading Bots",
-    description: "Access automated trading bots designed for consistent profits on Deriv.",
+    title: "Practice Trading Bots",
+    description: "Explore automated trading tools to learn how algorithmic strategies work on Deriv.",
   },
   {
     icon: LineChart,
-    title: "Free Analysis Tools",
-    description: "Get professional-grade market analysis tools at no cost.",
+    title: "Analysis Tools",
+    description: "Access educational market analysis tools to help you understand trading concepts.",
   },
   {
     icon: GraduationCap,
-    title: "Expert Mentorship",
-    description: "Learn from experienced traders with proven track records.",
+    title: "Educational Mentorship",
+    description: "Learn trading fundamentals from our educational mentorship program.",
   },
   {
     icon: Calendar,
-    title: "Weekly Trading Tips",
-    description: "Receive exclusive market insights and trading strategies weekly.",
+    title: "Weekly Learning Sessions",
+    description: "Receive educational market insights and trading strategy explanations weekly.",
   },
   {
     icon: Rocket,
-    title: "Fast Onboarding",
-    description: "Start trading in minutes with our streamlined setup process.",
+    title: "Beginner-Friendly Setup",
+    description: "Start learning in minutes with our streamlined onboarding process.",
   },
 ];
 
@@ -45,10 +45,10 @@ const FeaturesSection = () => {
           className="text-center mb-16"
         >
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            What You <span className="text-gradient-gold">Get</span>
+            What You'll <span className="text-gradient-gold">Learn</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Everything you need to start your profitable trading journey with Deriv
+            Educational resources to help you understand trading on Deriv's platform
           </p>
         </motion.div>
 

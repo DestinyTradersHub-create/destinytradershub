@@ -1,48 +1,45 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { Users, Globe, TrendingUp, DollarSign } from "lucide-react";
+import { Users, Globe, TrendingUp, BookOpen } from "lucide-react";
 
 const stats = [
   {
     icon: Users,
-    value: 1800,
+    value: 1900,
     suffix: "+",
-    label: "Traders Mentored",
+    label: "Students Enrolled",
     color: "text-primary",
   },
   {
     icon: Globe,
-    value: 15,
+    value: 22,
     suffix: "+",
     label: "Countries Reached",
     color: "text-emerald",
   },
   {
     icon: TrendingUp,
-    value: 94,
-    suffix: "%+",
-    label: "Profitable Traders",
+    value: 96,
+    suffix: "+",
+    label: "Course Completions",
     color: "text-primary",
   },
   {
-    icon: DollarSign,
-    value: 1,
-    prefix: "$",
-    suffix: "M+",
-    label: "Total Profit Accumulated",
+    icon: BookOpen,
+    value: 50,
+    suffix: "+",
+    label: "Educational Resources",
     color: "text-emerald",
   },
 ];
 
 const AnimatedCounter = ({
   value,
-  prefix = "",
   suffix = "",
   inView,
 }: {
   value: number;
-  prefix?: string;
   suffix?: string;
   inView: boolean;
 }) => {
@@ -71,7 +68,6 @@ const AnimatedCounter = ({
 
   return (
     <span>
-      {prefix}
       {count.toLocaleString()}
       {suffix}
     </span>
@@ -101,7 +97,6 @@ const StatsSection = () => {
               <div className={`text-3xl md:text-4xl font-display font-bold mb-2 ${stat.color}`}>
                 <AnimatedCounter
                   value={stat.value}
-                  prefix={stat.prefix}
                   suffix={stat.suffix}
                   inView={isInView}
                 />

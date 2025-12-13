@@ -14,51 +14,51 @@ import {
 const tools = [
   {
     icon: Bot,
-    title: "Free Trading Bots",
-    description: "Automated trading strategies that work 24/7. No coding required.",
-    features: ["Pre-configured strategies", "Easy to deploy", "Works on Deriv"],
+    title: "Practice Trading Bots",
+    description: "Explore automated trading strategies to understand how algorithmic trading works.",
+    features: ["Educational demos", "Learn automation concepts", "Deriv platform compatible"],
     link: "https://dbotpro.live/#freebots",
-    cta: "Get Free Bots",
+    cta: "Explore Bots",
   },
   {
     icon: BarChart3,
     title: "Analysis Tools",
-    description: "Professional-grade market analysis and signal indicators.",
-    features: ["Technical indicators", "Market signals", "Price alerts"],
+    description: "Educational market analysis tools to help you understand trading concepts.",
+    features: ["Technical indicators", "Chart reading tutorials", "Market education"],
     link: "https://dbotpro.live",
     cta: "Access Tools",
   },
   {
     icon: GraduationCap,
     title: "Trading Education",
-    description: "Learn to trade from scratch with our comprehensive courses.",
-    features: ["Video tutorials", "Live sessions", "Strategy guides"],
+    description: "Structured courses to help you understand trading fundamentals from scratch.",
+    features: ["Video tutorials", "Live Q&A sessions", "Strategy explanations"],
     link: "https://youtube.com/@destinythetrader",
     cta: "Start Learning",
   },
   {
     icon: MessageCircle,
     title: "Community Support",
-    description: "Join our active trading community for signals and discussions.",
-    features: ["Telegram group", "WhatsApp channel", "Daily updates"],
+    description: "Join our educational trading community for learning discussions.",
+    features: ["Telegram group", "WhatsApp channel", "Daily educational content"],
     link: "https://t.me/thetradinghub101",
     cta: "Join Community",
   },
   {
     icon: Video,
-    title: "Live Mentorship",
-    description: "Get personalized guidance from experienced traders.",
-    features: ["1-on-1 sessions", "Strategy reviews", "Account analysis"],
+    title: "Educational Mentorship",
+    description: "Get personalized educational guidance to develop your trading knowledge.",
+    features: ["1-on-1 learning sessions", "Concept explanations", "Q&A support"],
     link: "https://wa.me/254748406098",
     cta: "Book Session",
   },
   {
     icon: Lightbulb,
-    title: "Daily Trade Ideas",
-    description: "Receive actionable trade ideas and market insights daily.",
-    features: ["Morning analysis", "Entry/exit levels", "Risk management"],
+    title: "Daily Market Education",
+    description: "Receive educational market analysis and trading concept explanations daily.",
+    features: ["Morning briefings", "Market analysis tutorials", "Risk education"],
     link: "https://whatsapp.com/channel/0029VbB35fQHrDZjhSaxOG0c",
-    cta: "Get Signals",
+    cta: "Get Updates",
   },
 ];
 
@@ -73,10 +73,12 @@ const ToolsMentorshipSection = () => {
           className="text-center mb-16"
         >
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Free Tools & <span className="text-gradient-gold">Mentorship</span>
+            Educational Tools & <span className="text-gradient-gold">Mentorship</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Everything you need to succeed in trading - from automated bots to personal mentorship.
+            Resources designed to help you learn about trading on Deriv's platform.
+            <br />
+            <span className="text-sm">*This is an educational program, not financial advice.</span>
           </p>
         </motion.div>
 
@@ -126,7 +128,7 @@ const ToolsMentorshipSection = () => {
           className="text-center mt-12"
         >
           <p className="text-muted-foreground mb-4">
-            Don't have a Deriv account yet?
+            Ready to start learning? Create your Deriv account to access the platform.
           </p>
           <Button variant="hero" size="xl" asChild>
             <a

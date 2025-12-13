@@ -1,4 +1,4 @@
-import { TrendingUp, Shield, AlertTriangle, Handshake } from "lucide-react";
+import { TrendingUp, Shield, AlertTriangle, Handshake, Info } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -7,16 +7,31 @@ const Footer = () => {
     <footer className="py-12 border-t border-border/30">
       <div className="container mx-auto px-4">
         {/* Risk Warning */}
-        <div className="glass-card p-6 mb-12 border-destructive/30">
+        <div className="glass-card p-6 mb-8 border-destructive/30">
           <div className="flex items-start gap-4">
             <AlertTriangle className="w-6 h-6 text-destructive flex-shrink-0 mt-1" />
             <div>
               <h4 className="font-semibold text-foreground mb-2">Risk Warning</h4>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Trading CFDs, forex, cryptocurrencies, and other derivatives involves significant risk and can result in the loss of your entire invested capital. 
-                Ensure you understand the terms and conditions before trading. Past performance does not guarantee future results. 
-                Only trade with money you can afford to lose. Trading derivatives may not be suitable for all investors. 
-                Please consider our risk disclosure before trading.
+                These products may not be suitable for all investors. Ensure you understand the risks involved and seek independent advice if necessary. 
+                Past performance does not guarantee future results. Only trade with money you can afford to lose.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Affiliate Disclosure */}
+        <div className="glass-card p-6 mb-8 border-accent/30">
+          <div className="flex items-start gap-4">
+            <Info className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
+            <div>
+              <h4 className="font-semibold text-foreground mb-2">Affiliate Disclosure</h4>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Destiny Traders Hub is an independent educational platform and affiliate partner of Deriv. 
+                We may receive compensation when you sign up through our links. This does not affect the content we provide or our recommendations. 
+                We provide educational content only and do not offer financial, investment, or trading advice. 
+                Always conduct your own research and consider seeking professional financial advice.
               </p>
             </div>
           </div>
@@ -42,7 +57,7 @@ const Footer = () => {
           {/* Security Badge */}
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 border border-border/30">
             <Shield className="w-4 h-4 text-emerald" />
-            <span className="text-sm text-muted-foreground">Secure & Regulated</span>
+            <span className="text-sm text-muted-foreground">Educational Platform</span>
           </div>
 
           {/* Copyright */}
@@ -91,6 +106,7 @@ const Footer = () => {
           <p className="text-xs text-muted-foreground max-w-3xl mx-auto">
             Deriv is a pioneer and market leader with a 25-year track record, licensed and regulated by financial authorities including the Malta Financial Services Authority, 
             Labuan Financial Services Authority, Vanuatu Financial Services Commission, and British Virgin Islands Financial Services Commission.
+            This website provides educational content only and does not constitute financial, investment, or trading advice.
           </p>
         </div>
       </div>

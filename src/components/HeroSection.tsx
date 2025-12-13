@@ -70,7 +70,7 @@ const HeroSection = () => {
           >
             <Shield className="w-4 h-4 text-emerald" />
             <span className="text-sm font-medium text-muted-foreground">
-              Trusted by 1,800+ Traders Worldwide
+              Educational Platform for 1,900+ Students
             </span>
           </motion.div>
 
@@ -94,8 +94,8 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto"
           >
-            Access 100+ global markets including Forex, Cryptocurrencies, Commodities, 
-            Stocks, Synthetic Indices & more. Trade 24/7 with free tools, bots & expert mentorship.
+            Learn to navigate 100+ global markets including Forex, Cryptocurrencies, Commodities, 
+            Stocks & Synthetic Indices. Access educational resources, practice tools & community mentorship.
           </motion.p>
 
           {/* CTA Buttons */}
