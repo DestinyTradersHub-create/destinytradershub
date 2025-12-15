@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
@@ -25,8 +26,10 @@ import {
   RefreshCw,
   ShieldAlert,
   Inbox,
+  FileText,
 } from 'lucide-react';
 import { format } from 'date-fns';
+import BlogPostList from '@/components/admin/BlogPostList';
 
 interface ContactInquiry {
   id: string;
@@ -194,130 +197,149 @@ const Admin = () => {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-8"
-        >
-          <div className="glass rounded-xl p-6 border border-border/50">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
-                <Inbox className="w-5 h-5 text-primary" />
-                Contact Inquiries
-              </h2>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleRefresh}
-                disabled={isRefreshing}
-              >
-                <RefreshCw className={`w-4 h-4 mr-2 ${isRefreshing ? 'animate-spin' : ''}`} />
-                Refresh
-              </Button>
-            </div>
-            <p className="text-muted-foreground">
-              Total inquiries: <span className="text-foreground font-medium">{inquiries.length}</span>
-            </p>
-          </div>
-        </motion.div>
+        <Tabs defaultValue="inquiries" className="space-y-6">
+          <TabsList className="grid w-full max-w-md grid-cols-2">
+            <TabsTrigger value="inquiries" className="flex items-center gap-2">
+              <Inbox className="w-4 h-4" />
+              Inquiries
+            </TabsTrigger>
+            <TabsTrigger value="blog" className="flex items-center gap-2">
+              <FileText className="w-4 h-4" />
+              Blog Posts
+            </TabsTrigger>
+          </TabsList>
 
-        {/* Table */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="glass rounded-xl border border-border/50 overflow-hidden"
-        >
-          {isLoadingData ? (
-            <div className="flex items-center justify-center py-16">
-              <Loader2 className="w-8 h-8 animate-spin text-primary" />
-            </div>
-          ) : inquiries.length === 0 ? (
-            <div className="text-center py-16">
-              <Inbox className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-              <p className="text-muted-foreground">No contact inquiries yet.</p>
-            </div>
-          ) : (
-            <div className="overflow-x-auto">
-              <Table>
-                <TableHeader>
-                  <TableRow className="bg-muted/30">
-                    <TableHead className="font-semibold">
-                      <div className="flex items-center gap-2">
-                        <User className="w-4 h-4" />
-                        Name
-                      </div>
-                    </TableHead>
-                    <TableHead className="font-semibold">
-                      <div className="flex items-center gap-2">
-                        <Mail className="w-4 h-4" />
-                        Email
-                      </div>
-                    </TableHead>
-                    <TableHead className="font-semibold hidden md:table-cell">
-                      <div className="flex items-center gap-2">
-                        <Phone className="w-4 h-4" />
-                        Phone
-                      </div>
-                    </TableHead>
-                    <TableHead className="font-semibold hidden lg:table-cell">
-                      <div className="flex items-center gap-2">
-                        <MessageSquare className="w-4 h-4" />
-                        Message
-                      </div>
-                    </TableHead>
-                    <TableHead className="font-semibold">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4" />
-                        Date
-                      </div>
-                    </TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {inquiries.map((inquiry) => (
-                    <TableRow
-                      key={inquiry.id}
-                      className="cursor-pointer hover:bg-muted/50"
-                      onClick={() => setSelectedInquiry(inquiry)}
-                    >
-                      <TableCell className="font-medium">{inquiry.name}</TableCell>
-                      <TableCell>
-                        <a
-                          href={`mailto:${inquiry.email}`}
-                          className="text-primary hover:underline"
-                          onClick={(e) => e.stopPropagation()}
+          <TabsContent value="inquiries">
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-8"
+            >
+              <div className="glass rounded-xl p-6 border border-border/50">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
+                    <Inbox className="w-5 h-5 text-primary" />
+                    Contact Inquiries
+                  </h2>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleRefresh}
+                    disabled={isRefreshing}
+                  >
+                    <RefreshCw className={`w-4 h-4 mr-2 ${isRefreshing ? 'animate-spin' : ''}`} />
+                    Refresh
+                  </Button>
+                </div>
+                <p className="text-muted-foreground">
+                  Total inquiries: <span className="text-foreground font-medium">{inquiries.length}</span>
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Table */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="glass rounded-xl border border-border/50 overflow-hidden"
+            >
+              {isLoadingData ? (
+                <div className="flex items-center justify-center py-16">
+                  <Loader2 className="w-8 h-8 animate-spin text-primary" />
+                </div>
+              ) : inquiries.length === 0 ? (
+                <div className="text-center py-16">
+                  <Inbox className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+                  <p className="text-muted-foreground">No contact inquiries yet.</p>
+                </div>
+              ) : (
+                <div className="overflow-x-auto">
+                  <Table>
+                    <TableHeader>
+                      <TableRow className="bg-muted/30">
+                        <TableHead className="font-semibold">
+                          <div className="flex items-center gap-2">
+                            <User className="w-4 h-4" />
+                            Name
+                          </div>
+                        </TableHead>
+                        <TableHead className="font-semibold">
+                          <div className="flex items-center gap-2">
+                            <Mail className="w-4 h-4" />
+                            Email
+                          </div>
+                        </TableHead>
+                        <TableHead className="font-semibold hidden md:table-cell">
+                          <div className="flex items-center gap-2">
+                            <Phone className="w-4 h-4" />
+                            Phone
+                          </div>
+                        </TableHead>
+                        <TableHead className="font-semibold hidden lg:table-cell">
+                          <div className="flex items-center gap-2">
+                            <MessageSquare className="w-4 h-4" />
+                            Message
+                          </div>
+                        </TableHead>
+                        <TableHead className="font-semibold">
+                          <div className="flex items-center gap-2">
+                            <Calendar className="w-4 h-4" />
+                            Date
+                          </div>
+                        </TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {inquiries.map((inquiry) => (
+                        <TableRow
+                          key={inquiry.id}
+                          className="cursor-pointer hover:bg-muted/50"
+                          onClick={() => setSelectedInquiry(inquiry)}
                         >
-                          {inquiry.email}
-                        </a>
-                      </TableCell>
-                      <TableCell className="hidden md:table-cell">
-                        {inquiry.phone ? (
-                          <a
-                            href={`tel:${inquiry.phone}`}
-                            className="text-primary hover:underline"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            {inquiry.phone}
-                          </a>
-                        ) : (
-                          <span className="text-muted-foreground">-</span>
-                        )}
-                      </TableCell>
-                      <TableCell className="hidden lg:table-cell max-w-xs">
-                        <p className="truncate">{inquiry.message}</p>
-                      </TableCell>
-                      <TableCell className="whitespace-nowrap">
-                        {format(new Date(inquiry.created_at), 'MMM d, yyyy')}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
-          )}
-        </motion.div>
+                          <TableCell className="font-medium">{inquiry.name}</TableCell>
+                          <TableCell>
+                            <a
+                              href={`mailto:${inquiry.email}`}
+                              className="text-primary hover:underline"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              {inquiry.email}
+                            </a>
+                          </TableCell>
+                          <TableCell className="hidden md:table-cell">
+                            {inquiry.phone ? (
+                              <a
+                                href={`tel:${inquiry.phone}`}
+                                className="text-primary hover:underline"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                {inquiry.phone}
+                              </a>
+                            ) : (
+                              <span className="text-muted-foreground">-</span>
+                            )}
+                          </TableCell>
+                          <TableCell className="hidden lg:table-cell max-w-xs">
+                            <p className="truncate">{inquiry.message}</p>
+                          </TableCell>
+                          <TableCell className="whitespace-nowrap">
+                            {format(new Date(inquiry.created_at), 'MMM d, yyyy')}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              )}
+            </motion.div>
+          </TabsContent>
+
+          <TabsContent value="blog">
+            <BlogPostList />
+          </TabsContent>
+        </Tabs>
 
         {/* Detail Modal */}
         {selectedInquiry && (
