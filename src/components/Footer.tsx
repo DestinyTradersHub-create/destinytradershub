@@ -69,6 +69,12 @@ const Footer = () => {
         {/* Links */}
         <div className="flex flex-wrap justify-center gap-6 mt-8 text-sm text-muted-foreground">
           <a
+            href="/blog"
+            className="hover:text-foreground transition-colors"
+          >
+            Blog
+          </a>
+          <a
             href="https://deriv.com/terms-and-conditions"
             target="_blank"
             rel="noopener noreferrer"
