@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X, TrendingUp, Handshake } from "lucide-react";
@@ -10,6 +11,7 @@ const navLinks = [
   { label: "Testimonials", href: "#testimonials" },
   { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
+  { label: "Blog", href: "/blog", isExternal: true },
 ];
 
 const Header = () => {
@@ -68,15 +70,25 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <button
-                key={link.label}
-                onClick={(e) => scrollToSection(e, link.href)}
-                className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary/50"
-              >
-                {link.label}
-              </button>
-            ))}
+            {navLinks.map((link) =>
+              link.isExternal ? (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary/50"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <button
+                  key={link.label}
+                  onClick={(e) => scrollToSection(e, link.href)}
+                  className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary/50"
+                >
+                  {link.label}
+                </button>
+              )
+            )}
           </nav>
 
           {/* CTA Button */}
@@ -123,17 +135,28 @@ const Header = () => {
                 <span className="text-xs font-medium text-accent">In Partnership with Deriv</span>
               </div>
               
-              {navLinks.map((link) => (
-                <button
-                  key={link.label}
-                  type="button"
-                  onClick={(e) => scrollToSection(e, link.href)}
-                  onTouchEnd={(e) => scrollToSection(e, link.href)}
-                  className="px-4 py-4 text-left text-base font-medium text-foreground hover:bg-secondary/50 active:bg-secondary/70 rounded-lg transition-colors touch-manipulation"
-                >
-                  {link.label}
-                </button>
-              ))}
+              {navLinks.map((link) =>
+                link.isExternal ? (
+                  <Link
+                    key={link.label}
+                    to={link.href}
+                    className="px-4 py-4 text-left text-base font-medium text-foreground hover:bg-secondary/50 active:bg-secondary/70 rounded-lg transition-colors touch-manipulation"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <button
+                    key={link.label}
+                    type="button"
+                    onClick={(e) => scrollToSection(e, link.href)}
+                    onTouchEnd={(e) => scrollToSection(e, link.href)}
+                    className="px-4 py-4 text-left text-base font-medium text-foreground hover:bg-secondary/50 active:bg-secondary/70 rounded-lg transition-colors touch-manipulation"
+                  >
+                    {link.label}
+                  </button>
+                )
+              )}
               <Button variant="hero" size="lg" className="mt-4 w-full" asChild>
                 <a
                   href="https://partners.deriv.com/rx?sidc=F310811B-4DCC-433A-B9AF-E14FA2AA0E6C&utm_campaign=dynamicworks&utm_medium=affiliate&utm_source=CU92942"
