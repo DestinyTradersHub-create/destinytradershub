@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { UserPlus, CreditCard, TrendingUp, ArrowRight, CheckCircle } from "lucide-react";
-import { trackDerivSignupClick } from "@/lib/gtag";
 
 const steps = [
   {
@@ -97,7 +96,6 @@ const GetStartedSection = () => {
                       href="https://partners.deriv.com/rx?sidc=F310811B-4DCC-433A-B9AF-E14FA2AA0E6C&utm_campaign=dynamicworks&utm_medium=affiliate&utm_source=CU92942"
                       target="_blank"
                       rel="noopener noreferrer"
-                      onClick={trackDerivSignupClick}
                     >
                       Start Now
                       <ArrowRight className="w-4 h-4 ml-2" />
@@ -121,7 +119,6 @@ const GetStartedSection = () => {
               href="https://partners.deriv.com/rx?sidc=F310811B-4DCC-433A-B9AF-E14FA2AA0E6C&utm_campaign=dynamicworks&utm_medium=affiliate&utm_source=CU92942"
               target="_blank"
               rel="noopener noreferrer"
-              onClick={trackDerivSignupClick}
             >
               Create Free Trading Account
               <ArrowRight className="w-5 h-5 ml-2" />

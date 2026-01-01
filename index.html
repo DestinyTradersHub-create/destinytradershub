@@ -49,6 +49,20 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'AW-17748644314');
+
+      // Google Ads conversion tracking function
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) !== 'undefined') {
+            window.open(url, '_blank');
+          }
+        };
+        gtag('event', 'conversion', {
+          'send_to': 'AW-17748644314/sPBhCMqPotUbENqjm49C',
+          'event_callback': callback
+        });
+        return false;
+      }
     </script>
 
     <script type="application/ld+json">
