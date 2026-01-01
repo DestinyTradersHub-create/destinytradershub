@@ -1,10 +1,20 @@
 import { useMemo } from "react";
+import DOMPurify from "dompurify";
 import BlogCTA from "./BlogCTA";
 import BlogRiskDisclaimer from "./BlogRiskDisclaimer";
 
 interface BlogContentProps {
   content: string;
 }
+
+// Configure DOMPurify to allow safe HTML elements and classes
+const sanitizeHtml = (html: string): string => {
+  return DOMPurify.sanitize(html, {
+    ALLOWED_TAGS: ['h2', 'h3', 'p', 'strong', 'em', 'ul', 'ol', 'li'],
+    ALLOWED_ATTR: ['class'],
+    ALLOW_DATA_ATTR: false,
+  });
+};
 
 const BlogContent = ({ content }: BlogContentProps) => {
   const renderedContent = useMemo(() => {
@@ -45,9 +55,12 @@ const BlogContent = ({ content }: BlogContentProps) => {
         (match) => `<ol class="my-4">${match}</ol>`
       );
 
+      // Sanitize the HTML to prevent XSS attacks
+      const sanitizedHtml = sanitizeHtml(html);
+
       return (
         <div key={index}>
-          <div dangerouslySetInnerHTML={{ __html: html }} />
+          <div dangerouslySetInnerHTML={{ __html: sanitizedHtml }} />
           {/* Insert mid-article CTA after the middle section */}
           {index === midPoint && <BlogCTA variant="inline" />}
           {/* Insert risk disclaimer before conclusion */}
