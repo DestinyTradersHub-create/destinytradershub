@@ -49,6 +49,7 @@ type ContactFormValues = z.infer<typeof contactSchema>;
 
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [honeypot, setHoneypot] = useState(""); // Hidden field for bot detection
   const { toast } = useToast();
 
   const form = useForm<ContactFormValues>({
@@ -64,20 +65,40 @@ const ContactForm = () => {
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
     try {
-      const { error } = await supabase.from("contact_inquiries").insert({
-        name: data.name,
-        email: data.email,
-        phone: data.phone || null,
-        message: data.message,
+      // Use edge function for rate-limited submission
+      const { data: response, error } = await supabase.functions.invoke("submit-contact", {
+        body: {
+          name: data.name,
+          email: data.email,
+          phone: data.phone || null,
+          message: data.message,
+          honeypot: honeypot, // Include honeypot for bot detection
+        },
       });
 
-      if (error) throw error;
+      if (error) {
+        // Handle rate limiting specifically
+        if (error.message?.includes("429") || error.message?.includes("Too many")) {
+          toast({
+            title: "Too many requests",
+            description: "Please wait a while before submitting again.",
+            variant: "destructive",
+          });
+          return;
+        }
+        throw error;
+      }
+
+      if (response?.error) {
+        throw new Error(response.error);
+      }
 
       toast({
         title: "Message sent!",
         description: "We'll get back to you as soon as possible.",
       });
       form.reset();
+      setHoneypot("");
     } catch (error) {
       toast({
         title: "Something went wrong",
@@ -106,6 +127,17 @@ const ContactForm = () => {
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          {/* Honeypot field - hidden from users, bots will fill it */}
+          <input
+            type="text"
+            name="website"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+            style={{ position: "absolute", left: "-9999px", opacity: 0 }}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
           <FormField
             control={form.control}
             name="name"
