@@ -88,11 +88,9 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6"
           >
-            <Button variant="hero" size="xl" asChild className="w-full sm:w-auto">
+            <Button variant="hero" size="xl" className="w-full sm:w-auto" asChild>
               <a
                 href="https://partners.deriv.com/rx?sidc=F310811B-4DCC-433A-B9AF-E14FA2AA0E6C&utm_campaign=dynamicworks&utm_medium=affiliate&utm_source=CU92942"
-                target="_blank"
-                rel="noopener noreferrer"
                 onClick={trackDerivSignupClick}
               >
                 Create Free Trading Account

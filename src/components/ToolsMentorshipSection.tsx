@@ -10,7 +10,6 @@ import {
   ArrowRight,
   CheckCircle
 } from "lucide-react";
-import { trackDerivSignupClick } from "@/lib/gtag";
 
 const tools = [
   {
@@ -136,7 +135,6 @@ const ToolsMentorshipSection = () => {
               href="https://partners.deriv.com/rx?sidc=F310811B-4DCC-433A-B9AF-E14FA2AA0E6C&utm_campaign=dynamicworks&utm_medium=affiliate&utm_source=CU92942"
               target="_blank"
               rel="noopener noreferrer"
-              onClick={trackDerivSignupClick}
             >
               Create Free Trading Account
               <ArrowRight className="w-5 h-5 ml-2" />
