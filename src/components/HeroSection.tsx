@@ -91,6 +91,8 @@ const HeroSection = () => {
             <Button variant="hero" size="xl" className="w-full sm:w-auto" asChild>
               <a
                 href="https://partners.deriv.com/rx?sidc=F310811B-4DCC-433A-B9AF-E14FA2AA0E6C&utm_campaign=dynamicworks&utm_medium=affiliate&utm_source=CU92942"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={trackDerivSignupClick}
               >
                 Create Free Trading Account
