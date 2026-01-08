@@ -13,33 +13,19 @@ const DERIV_SIGNUP_URL = "https://partners.deriv.com/rx?sidc=F310811B-4DCC-433A-
 // Debounce flag to prevent duplicate conversion fires
 let isConversionFiring = false;
 
-export const trackDerivSignupClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-  // Prevent default navigation - we'll handle it via callback
-  e.preventDefault();
-  
-  // Prevent duplicate clicks
+export const trackDerivSignupClick = () => {
+  // Prevent duplicate conversion fires
   if (isConversionFiring) {
     return;
   }
   
   isConversionFiring = true;
   
-  if (typeof window !== 'undefined' && window.gtag_report_conversion) {
-    // Use the global gtag_report_conversion function
-    window.gtag_report_conversion(DERIV_SIGNUP_URL);
-  } else if (typeof window !== 'undefined' && window.gtag) {
-    // Fallback if global function isn't available
-    const callback = () => {
-      window.open(DERIV_SIGNUP_URL, '_blank');
-    };
-    
+  // Fire the conversion event - let the native link handle navigation
+  if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', 'conversion', {
       'send_to': 'AW-17748644314/sPBhCMqPotUbENqjm49C',
-      'event_callback': callback
     });
-  } else {
-    // Final fallback - just open the URL
-    window.open(DERIV_SIGNUP_URL, '_blank');
   }
   
   // Reset flag after a short delay
