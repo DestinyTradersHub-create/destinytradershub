@@ -15,4 +15,33 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    target: "es2020",
+    cssMinify: true,
+    minify: "terser",
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ["console.log", "console.info"],
+      },
+    },
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "vendor-react": ["react", "react-dom"],
+          "vendor-router": ["react-router-dom"],
+          "vendor-motion": ["framer-motion"],
+          "vendor-ui": [
+            "@radix-ui/react-accordion",
+            "@radix-ui/react-dialog",
+            "@radix-ui/react-tooltip",
+            "@radix-ui/react-popover",
+          ],
+          "vendor-query": ["@tanstack/react-query"],
+          "vendor-form": ["react-hook-form", "@hookform/resolvers", "zod"],
+        },
+      },
+    },
+  },
 }));

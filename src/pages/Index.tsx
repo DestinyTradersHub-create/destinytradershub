@@ -1,15 +1,24 @@
+import { lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import MarketTicker from "@/components/MarketTicker";
-import StatsSection from "@/components/StatsSection";
-import TradingAssetsSection from "@/components/TradingAssetsSection";
-import GetStartedSection from "@/components/GetStartedSection";
-import ToolsMentorshipSection from "@/components/ToolsMentorshipSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import FAQSection from "@/components/FAQSection";
-import PartnershipSection from "@/components/PartnershipSection";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
+
+// Lazy load below-the-fold sections
+const StatsSection = lazy(() => import("@/components/StatsSection"));
+const TradingAssetsSection = lazy(() => import("@/components/TradingAssetsSection"));
+const GetStartedSection = lazy(() => import("@/components/GetStartedSection"));
+const ToolsMentorshipSection = lazy(() => import("@/components/ToolsMentorshipSection"));
+const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
+const FAQSection = lazy(() => import("@/components/FAQSection"));
+const PartnershipSection = lazy(() => import("@/components/PartnershipSection"));
+const ContactSection = lazy(() => import("@/components/ContactSection"));
+const Footer = lazy(() => import("@/components/Footer"));
+
+const SectionFallback = () => (
+  <div className="py-20 flex items-center justify-center">
+    <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+  </div>
+);
 
 const Index = () => {
   return (
@@ -18,16 +27,20 @@ const Index = () => {
       <main>
         <HeroSection />
         <MarketTicker />
-        <StatsSection />
-        <TradingAssetsSection />
-        <GetStartedSection />
-        <ToolsMentorshipSection />
-        <TestimonialsSection />
-        <FAQSection />
-        <PartnershipSection />
-        <ContactSection />
+        <Suspense fallback={<SectionFallback />}>
+          <StatsSection />
+          <TradingAssetsSection />
+          <GetStartedSection />
+          <ToolsMentorshipSection />
+          <TestimonialsSection />
+          <FAQSection />
+          <PartnershipSection />
+          <ContactSection />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </div>
   );
 };

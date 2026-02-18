@@ -55,7 +55,7 @@ const MarketTicker = () => {
     };
 
     fetchBinancePrices();
-    const interval = setInterval(fetchBinancePrices, 2000);
+    const interval = setInterval(fetchBinancePrices, 10000);
     return () => clearInterval(interval);
   }, []);
 
