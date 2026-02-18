@@ -87,6 +87,10 @@ const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] 
         <img
           src={testimonial.avatar}
           alt={testimonial.name}
+          loading="lazy"
+          decoding="async"
+          width={48}
+          height={48}
           className="w-12 h-12 rounded-full object-cover border-2 border-primary/30"
         />
         <div>

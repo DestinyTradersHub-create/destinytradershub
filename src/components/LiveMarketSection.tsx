@@ -86,7 +86,7 @@ const LiveMarketSection = () => {
       if ('requestIdleCallback' in window) {
         (window as Window).requestIdleCallback(() => {
           fetchCryptoPrices();
-          interval = setInterval(fetchCryptoPrices, 2000);
+          interval = setInterval(fetchCryptoPrices, 10000);
         }, { timeout: 1000 });
       } else {
         setTimeout(() => {
@@ -116,7 +116,7 @@ const LiveMarketSection = () => {
       );
     };
 
-    const interval = setInterval(updateForexPrices, 1500);
+    const interval = setInterval(updateForexPrices, 10000);
     return () => clearInterval(interval);
   }, []);
 
@@ -180,7 +180,7 @@ const LiveMarketSection = () => {
             Live <span className="text-gradient-gold">Market Prices</span>
           </h2>
           <p className="text-muted-foreground text-sm md:text-lg max-w-2xl mx-auto mb-2 md:mb-4">
-            Track real-time prices from Binance API. Data refreshes every 2 seconds.
+            Track real-time prices from Binance API. Data refreshes every 10 seconds.
           </p>
           <div className="flex items-center justify-center gap-2 text-xs md:text-sm text-muted-foreground">
             <RefreshCw className="w-3 h-3 md:w-4 md:h-4 animate-spin" />
